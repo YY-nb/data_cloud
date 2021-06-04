@@ -1,36 +1,42 @@
+server:
+  port: 8081
 spring:
   redis:
     timeout: 10000ms
     host: 127.0.0.1
     port: 6379
-    database: 0 # Ñ¡ÔñÄÄ¸ö¿â£¬Ä¬ÈÏ0¿â
+    database: 0 # é€‰æ‹©å“ªä¸ªåº“ï¼Œé»˜è®¤0åº“
     lettuce:
       pool:
-        max-active: 1024 # ×î´óÁ¬½ÓÊı£¬Ä¬ÈÏ 8
-        max-wait: 10000ms # ×î´óÁ¬½Ó×èÈûµÈ´ıÊ±¼ä£¬µ¥Î»ºÁÃë£¬Ä¬ÈÏ -1
-        max-idle: 200 # ×î´ó¿ÕÏĞÁ¬½Ó£¬Ä¬ÈÏ 8
+        max-active: 1024 # æœ€å¤§è¿æ¥æ•°ï¼Œé»˜è®¤ 8
+        max-wait: 10000ms # æœ€å¤§è¿æ¥é˜»å¡ç­‰å¾…æ—¶é—´ï¼Œå•ä½æ¯«ç§’ï¼Œé»˜è®¤ -1
+        max-idle: 200 # æœ€å¤§ç©ºé—²è¿æ¥ï¼Œé»˜è®¤ 8
         min-idle: 5
   datasource:
     username: root
-    password: 
-    url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    password:
+    url: jdbc:mysql://127.0.0.1:3306/data_cloud?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-# Mybatis-plusÅäÖÃ
+# Mybatis-plusé…ç½®
 mybatis-plus:
-  #ÅäÖÃMapperÓ³ÉäÎÄ¼ş
+  #é…ç½®Mapperæ˜ å°„æ–‡ä»¶
   mapper-locations: classpath*:/mapper/*Mapper.xml
-  # ÅäÖÃMyBatisÊı¾İ·µ»ØÀàĞÍ±ğÃû£¨Ä¬ÈÏ±ğÃûÊÇÀàÃû£©
+  # é…ç½®MyBatisæ•°æ®è¿”å›ç±»å‹åˆ«åï¼ˆé»˜è®¤åˆ«åæ˜¯ç±»åï¼‰
   type-aliases-package: com.project.data_cloud_server.entity
   configuration:
-    # ×Ô¶¯ÍÕ·åÃüÃû
+    # è‡ªåŠ¨é©¼å³°å‘½å
     map-underscore-to-camel-case: false
+## Mybatis SQL æ‰“å°(æ–¹æ³•æ¥å£æ‰€åœ¨çš„åŒ…ï¼Œä¸æ˜¯Mapper.xmlæ‰€åœ¨çš„åŒ…)
+logging:
+  level:
+    com.project.data_cloud_server.mapper: debug
 jwt:
-  # JWT´æ´¢µÄÇëÇóÍ·
+  # JWTå­˜å‚¨çš„è¯·æ±‚å¤´
   tokenHeader: Authorization
-  # JWT ¼Ó½âÃÜÊ¹ÓÃµÄÃÜÔ¿
+  # JWT åŠ è§£å¯†ä½¿ç”¨çš„å¯†é’¥
   secret: yy-secret
-  # JWTµÄ³¬ÆÚÏŞÊ±¼ä£¨60*60*1£©
+  # JWTçš„è¶…æœŸé™æ—¶é—´ï¼ˆ60*60*1ï¼‰
   expiration: 3600
-  # JWT ¸ºÔØÖĞÄÃµ½¿ªÍ·
+  # JWT è´Ÿè½½ä¸­æ‹¿åˆ°å¼€å¤´
   tokenHead: Bearer
