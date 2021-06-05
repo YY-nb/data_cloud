@@ -1,9 +1,10 @@
 server:
   port: 8081
+
 spring:
   redis:
     timeout: 10000ms
-    host: 127.0.0.1
+    host: localhost
     port: 6379
     database: 0 # 选择哪个库，默认0库
     lettuce:
@@ -31,6 +32,8 @@ mybatis-plus:
 logging:
   level:
     com.project.data_cloud_server.mapper: debug
+  file:
+    path: /www/data_cloud/data_cloud_back/logs
 jwt:
   # JWT存储的请求头
   tokenHeader: Authorization
