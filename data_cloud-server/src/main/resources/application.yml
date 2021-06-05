@@ -32,7 +32,8 @@ mybatis-plus:
 logging:
   level:
     com.project.data_cloud_server.mapper: debug
-
+  file:
+    path: /www/data_cloud/data_cloud_back/logs
 jwt:
   # JWT存储的请求头
   tokenHeader: Authorization
