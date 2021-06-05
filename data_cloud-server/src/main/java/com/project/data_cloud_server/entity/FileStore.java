@@ -8,37 +8,27 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_role")
-public class SysRole implements Serializable {
+@TableName("file_store")
+public class FileStore implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId("role_id")
-    private String roleId;
+    @TableId("file_store_id")
+    private String fileStoreId;
 
-    /**
-     * 角色名称
-     */
-    @TableField("role_name")
-    private String roleName;
-
-    /**
-     * 创建者ID
-     */
     @TableField("user_id")
     private String userId;
 
-    /**
-     * 创建时间
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
+    @TableField("current_size")
+    private Double currentSize;
+
+    @TableField("max_size")
+    private Double maxSize;
 
 
 }

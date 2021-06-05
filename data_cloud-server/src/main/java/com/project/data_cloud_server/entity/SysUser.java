@@ -1,81 +1,60 @@
 package com.project.data_cloud_server.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.util.Date;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
-/**
- *
- * @author axiuj
- * Create to 2021/6/3
- */
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
-/**
- * 系统用户
- */
+
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@TableName(value = "sys_user")
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@TableName("sys_user")
 public class SysUser implements Serializable {
-    @TableId(value = "user_id", type = IdType.AUTO)
-    private Long userId;
+
+    private static final long serialVersionUID = 1L;
+
+    @TableId("user_id")
+    private String userId;
 
     /**
      * 用户名
      */
-    @TableField(value = "username")
     private String username;
 
     /**
      * 密码
      */
-    @TableField(value = "password")
     private String password;
 
     /**
      * 邮箱
      */
-    @TableField(value = "email")
     private String email;
 
     /**
      * 手机号
      */
-    @TableField(value = "mobile")
     private String mobile;
 
     /**
      * 状态  0：禁用   1：正常
      */
-    @TableField(value = "status")
-    private Byte status;
+    private Integer status;
 
     /**
      * 创建时间
      */
-    @TableField(value = "create_time")
-    private Date createTime;
+    @TableField("create_time")
+    private LocalDateTime createTime;
 
-    private static final long serialVersionUID = 1L;
+    @TableField("file_store_id")
+    private String fileStoreId;
 
-    public static final String COL_USER_ID = "user_id";
 
-    public static final String COL_USERNAME = "username";
-
-    public static final String COL_PASSWORD = "password";
-
-    public static final String COL_EMAIL = "email";
-
-    public static final String COL_MOBILE = "mobile";
-
-    public static final String COL_STATUS = "status";
-
-    public static final String COL_CREATE_TIME = "create_time";
 }

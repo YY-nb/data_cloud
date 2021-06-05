@@ -1,62 +1,51 @@
 package com.project.data_cloud_server.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.util.Date;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
-/**
- * @author axiuj
- * Create to 2021/6/3
- */
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@TableName(value = "sys_file")
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@TableName("sys_file")
 public class SysFile implements Serializable {
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+
+    private static final long serialVersionUID = 1L;
+
+    private String id;
 
     /**
      * 文件名称
      */
-    @TableField(value = "name")
     private String name;
 
     /**
      * 文件相对路径
      */
-    @TableField(value = "path")
     private String path;
 
     /**
      * 创建人
      */
-    @TableField(value = "creator")
-    private Long creator;
+    @TableField("file_store_id")
+    private String fileStoreId;
 
-    @TableField(value = "create_time")
-    private Date createTime;
+    @TableField("create_time")
+    private LocalDateTime createTime;
 
-    @TableField(value = "update_time")
-    private Date updateTime;
+    @TableField("update_time")
+    private LocalDateTime updateTime;
 
-    private static final long serialVersionUID = 1L;
+    private String pid;
 
-    public static final String COL_ID = "id";
+    private Double size;
 
-    public static final String COL_NAME = "name";
+    private String type;
 
-    public static final String COL_PATH = "path";
 
-    public static final String COL_CREATOR = "creator";
-
-    public static final String COL_CREATE_TIME = "create_time";
-
-    public static final String COL_UPDATE_TIME = "update_time";
 }
