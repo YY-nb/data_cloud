@@ -16,7 +16,7 @@ spring:
   datasource:
     username: root
     password:
-    url: jdbc:mysql://127.0.0.1:3306/data_cloud?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/data_cloud?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 # Mybatis-plus配置
@@ -32,8 +32,7 @@ mybatis-plus:
 logging:
   level:
     com.project.data_cloud_server.mapper: debug
-  file:
-    path: /www/data_cloud/data_cloud_back/logs
+
 jwt:
   # JWT存储的请求头
   tokenHeader: Authorization
