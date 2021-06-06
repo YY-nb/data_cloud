@@ -1,16 +1,18 @@
 package com.project.data_cloud_server.config.security;
 
-import com.project.data_cloud_server.config.captcha.CaptchaFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import java.util.Arrays;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -27,8 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     JwtAccessDeniedHandler jwtAccessDeniedHandler;
     @Autowired
     JwtLogoutSuccessHandler jwtLogoutSuccessHandler;
-    @Autowired
-    CaptchaFilter captchaFilter;
+
 
     private static final String[] URL_ALLOWED={"/login","/captcha","/register","/logout"};
 
@@ -40,10 +41,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
+/*
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
+    }
+    */
+
+    @Bean
+    MyAuthenticationProvider myAuthenticationProvider(){
+        MyAuthenticationProvider myAuthenticationProvider=new MyAuthenticationProvider();
+        myAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        myAuthenticationProvider.setUserDetailsService(userDetailsService);
+        return myAuthenticationProvider;
+    }
+
+    @Override
+    @Bean
+    protected AuthenticationManager authenticationManager() throws Exception {
+        ProviderManager manager=new ProviderManager(Arrays.asList(myAuthenticationProvider()));
+        return manager;
     }
 
     @Override
@@ -75,7 +92,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //自定义过滤器，jwt认证过滤器和验证码过滤器
                 .and()
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(captchaFilter, UsernamePasswordAuthenticationFilter.class);  //添加验证码过滤器
+           //     .addFilterBefore(captchaFilter, UsernamePasswordAuthenticationFilter.class);  //添加验证码过滤器
 
 
 
