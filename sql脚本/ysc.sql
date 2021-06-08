@@ -62,7 +62,7 @@ CREATE TABLE `sys_role`  (
                              `user_id` char(32) DEFAULT NULL COMMENT '创建者ID',
                              `create_time` datetime DEFAULT NULL COMMENT '创建时间',
                              PRIMARY KEY (`role_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4  COMMENT = '角色' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4  COMMENT = '角色' ROW_FORMAT = Dynamic;
 
 
 -- ----------------------------
@@ -80,7 +80,7 @@ CREATE TABLE `sys_user`  (
                              `file_store_id` char(32) DEFAULT NULL,
                              PRIMARY KEY (`user_id`) USING BTREE,
                              UNIQUE INDEX `username`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4  COMMENT = '系统用户' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4  COMMENT = '系统用户' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for user_role
@@ -91,6 +91,17 @@ CREATE TABLE `user_role` (
                              `user_id` char(32) DEFAULT NULL,
                              `role_id` char(32) DEFAULT NULL,
                              PRIMARY KEY (`id`)
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4  COMMENT = '用户角色关系' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4  COMMENT = '用户角色关系' ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Table structure for file_store
+-- ----------------------------
+DROP TABLE IF EXISTS `file_store`;
+CREATE TABLE `user_role` (
+                             `file_store_id` char(32) NOT NULL,
+                             `user_id` char(32) DEFAULT NULL,
+                             `current_size` double DEFAULT '0',
+                             `max_size` double DEFAULT '15728640',
+                             PRIMARY KEY (`file_store_id`)
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4  COMMENT = '用户文件仓库' ROW_FORMAT = Dynamic;
 SET FOREIGN_KEY_CHECKS = 1;
