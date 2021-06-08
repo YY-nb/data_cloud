@@ -57,12 +57,12 @@ CREATE TABLE `sys_file`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role`  (
-                             `role_id` char(32) NOT NULL,
+                             `role_id` char NOT NULL,
                              `role_name` varchar(100) CHARACTER SET utf8mb4  DEFAULT NULL COMMENT '角色名称',
-                             `user_id` char(32) DEFAULT NULL COMMENT '创建者ID',
-                             `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+                             `remark` varchar(45) DEFAULT NULL,
                              PRIMARY KEY (`role_id`) USING BTREE
 ) ENGINE = InnoDB  CHARACTER SET = utf8mb4  COMMENT = '角色' ROW_FORMAT = Dynamic;
+INSERT INTO `data_cloud`.`sys_role` (`role_id`, `role_name`, `remark`) VALUES ('1', 'ROLE_user', '普通用户');
 
 
 -- ----------------------------
@@ -97,11 +97,11 @@ CREATE TABLE `user_role` (
 -- Table structure for file_store
 -- ----------------------------
 DROP TABLE IF EXISTS `file_store`;
-CREATE TABLE `user_role` (
-                             `file_store_id` char(32) NOT NULL,
-                             `user_id` char(32) DEFAULT NULL,
-                             `current_size` double DEFAULT '0',
-                             `max_size` double DEFAULT '15728640',
-                             PRIMARY KEY (`file_store_id`)
+CREATE TABLE `file_store` (
+                              `file_store_id` char(32) NOT NULL,
+                              `user_id` char(32) DEFAULT NULL,
+                              `current_size` double DEFAULT '0',
+                              `max_size` double DEFAULT '15728640',
+                              PRIMARY KEY (`file_store_id`)
 ) ENGINE = InnoDB  CHARACTER SET = utf8mb4  COMMENT = '用户文件仓库' ROW_FORMAT = Dynamic;
 SET FOREIGN_KEY_CHECKS = 1;
