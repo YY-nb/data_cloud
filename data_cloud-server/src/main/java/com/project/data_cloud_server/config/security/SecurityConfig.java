@@ -31,7 +31,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     JwtLogoutSuccessHandler jwtLogoutSuccessHandler;
 
 
-    private static final String[] URL_ALLOWED={"/login","/captcha","/register","/logout"};
+    private static final String[] URL_ALLOWED={
+            "/login",
+            "/captcha",
+            "/register",
+            "/logout",
+            "/emailCode"};
 
     @Bean
     JwtAuthenticationFilter jwtAuthenticationFilter() throws Exception {

@@ -19,6 +19,16 @@ spring:
     url: jdbc:mysql://localhost:3306/data_cloud?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+  mail:
+    username: 1571727223@qq.com
+    password:
+    host: smtp.qq.com
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+    port: 465
 # Mybatis-plus配置
 mybatis-plus:
   #配置Mapper映射文件

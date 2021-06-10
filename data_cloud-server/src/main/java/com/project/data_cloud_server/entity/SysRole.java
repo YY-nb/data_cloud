@@ -29,16 +29,11 @@ public class SysRole implements Serializable {
     private String roleName;
 
     /**
-     * 创建者ID
+     * 标注
      */
-    @TableField("user_id")
-    private String userId;
+    private String remark;
 
-    /**
-     * 创建时间
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
+
 
 
 }
