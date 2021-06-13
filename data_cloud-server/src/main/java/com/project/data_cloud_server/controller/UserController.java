@@ -63,7 +63,7 @@ public class UserController extends BaseController{
     @Async
     public ApiResult emailCode(String email){
         String code= mailUtil.generateCode();
-        String text=Const.MAIL_TEXT+code;
+        String text=Const.MAIL_TEXT+code+" ,有效期为2分钟";
         mailUtil.sendMail(Const.MAIL_FROM,email,Const.MAIL_SUBJECT,text);
         log.info("验证码已发送");
         redisUtil.hset(Const.EMAIL_CODE,"code",code,Const.RedisTime);
