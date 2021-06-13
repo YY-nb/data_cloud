@@ -25,11 +25,10 @@ CREATE TABLE `folder`  (
                            `id` char(32) NOT NULL,
                            `pid` char(32) DEFAULT NULL,
                            `name` varchar(255) CHARACTER SET utf8mb4  DEFAULT NULL COMMENT '文件或文件夹名称',
-                           `type` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '文件类型',
-                           `file_id` int DEFAULT NULL COMMENT '文件id  空表示是文件夹',
-                           `file_stor_id` char(32) DEFAULT NULL COMMENT '创建人',
+                           `file_store_id` char(32) DEFAULT NULL COMMENT '创建人',
                            `create_time` datetime DEFAULT NULL,
                            `update_time` datetime DEFAULT NULL,
+                           `folder_path` varchar(1024) DEFAULT NULL,
                            PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4  ROW_FORMAT = Dynamic;
 
