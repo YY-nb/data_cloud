@@ -7,16 +7,15 @@
         <id column="id" property="id" />
         <result column="pid" property="pid" />
         <result column="name" property="name" />
-        <result column="type" property="type" />
-        <result column="file_id" property="fileId" />
-        <result column="file_stor_id" property="fileStorId" />
+        <result column="file_store_id" property="fileStoreId" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
+        <result column="folder_path" property="folderPath" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, pid, name, type, file_id, file_stor_id, create_time, update_time
+        id, pid, name, file_store_id, create_time, update_time, folder_path
     </sql>
 
 </mapper>

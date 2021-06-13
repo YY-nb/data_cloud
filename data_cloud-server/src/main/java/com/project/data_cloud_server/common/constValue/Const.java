@@ -8,4 +8,6 @@ public class Const {
     public static final String MAIL_FROM="1571727223@qq.com";
     public static final String MAIL_SUBJECT="资料网络云";
     public static final String MAIL_TEXT="欢迎使用资料网络云，注册验证码为： ";
+    public  static final String FORMER_PATH="/www/data_cloud/disk/";
+
 }

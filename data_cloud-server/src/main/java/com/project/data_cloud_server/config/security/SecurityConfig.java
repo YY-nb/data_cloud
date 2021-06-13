@@ -36,7 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/captcha",
             "/register",
             "/logout",
-            "/emailCode"};
+            "/emailCode",
+
+    };
 
     @Bean
     JwtAuthenticationFilter jwtAuthenticationFilter() throws Exception {

@@ -25,27 +25,20 @@ public class Folder implements Serializable {
     private String name;
 
     /**
-     * 文件类型
-     */
-    private String type;
-
-    /**
-     * 文件id  空表示是文件夹
-     */
-    @TableField("file_id")
-    private Integer fileId;
-
-    /**
      * 创建人
      */
-    @TableField("file_stor_id")
-    private String fileStorId;
+    @TableField("file_store_id")
+    private String fileStoreId;
 
     @TableField("create_time")
     private LocalDateTime createTime;
 
     @TableField("update_time")
     private LocalDateTime updateTime;
+
+    @TableField("folder_path")
+    private String folderPath;
+
 
 
 }

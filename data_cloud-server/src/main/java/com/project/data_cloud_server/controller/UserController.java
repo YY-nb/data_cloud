@@ -26,15 +26,19 @@ import java.util.UUID;
 
 @Slf4j
 @RestController
-public class UserController {
+public class UserController extends BaseController{
     @Autowired
     DefaultKaptcha producer;
-    @Autowired
-    RedisUtil redisUtil;
+
     @Autowired
     MailUtil mailUtil;
-    @Autowired
-    UserService userService;
+
+    @GetMapping("/test")
+    public ApiResult test(){
+
+        return ApiResult.success();
+    }
+
     @GetMapping("/captcha")
     public ApiResult captcha() throws IOException {
         Map<String,Object> map=new HashMap<>();

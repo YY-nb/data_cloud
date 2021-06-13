@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -39,6 +40,11 @@ public class UserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impleme
     }
 
     @Override
+    public SysUser getUserById(String userId) {
+        return getOne(new QueryWrapper<SysUser>().eq("user_id",userId));
+    }
+
+    @Override
     public boolean checkName(String username) {
         if(getOne(new QueryWrapper<SysUser>().eq("username",username))!=null){
             return true;
@@ -49,6 +55,7 @@ public class UserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impleme
     }
 
     @Override
+    @Transactional
     public ApiResult register(SysUser user,String code) {
         String error;
         if(checkName(user.getUsername())){

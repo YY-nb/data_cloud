@@ -1,8 +1,10 @@
 package com.project.data_cloud_server.config.security;
 
 import com.project.data_cloud_server.common.api.ApiResult;
+import com.project.data_cloud_server.common.constValue.Const;
 import com.project.data_cloud_server.util.JsonUtil;
 import com.project.data_cloud_server.util.JwtTokenUtil;
+import com.project.data_cloud_server.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -21,7 +23,8 @@ import java.util.Map;
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     @Autowired
     JwtTokenUtil jwtTokenUtil;
-
+    @Autowired
+    RedisUtil redisUtil;
     /**
      * 登录成功返回token
      */
@@ -33,6 +36,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         log.info("用户登录成功，token为：{}",token);
         map.put("token",token);
         ApiResult result=ApiResult.success("登录成功",map);
+
         JsonUtil.output(printWriter,result);
     }
 }
